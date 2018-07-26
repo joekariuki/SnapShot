@@ -3,11 +3,11 @@ methodOverride  = require("method-override"),
  bodyParser     = require("body-parser"),
    mongoose     = require("mongoose"),
         app     = express();
-   
+
 // APP CONFIG
-mongoose.connect("mongodb://localhost/blog_app");
+mongoose.connect("mongodb://localhost:27017/blog_app", { useNewUrlParser: true });
 app.set("view engine", "ejs");
-app.use(express.static("public")); 
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 
@@ -101,7 +101,7 @@ app.delete("/blogs/:id", function(req, res) {
     });
     // redirect to show
 })
-        
+
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("SERVER IS RUNNING!!!");
 })
